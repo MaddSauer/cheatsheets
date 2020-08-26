@@ -36,7 +36,7 @@ for i in "${!vlanNames[@]}"
 do
   vName=${vlanNames[$i]}
   vId=${vlanIds[$i]}
-  vNic="{parentNic}.${vId}"
+  vNic="${parentNic}.${vId}"
   ip4Addr="${firstOctets}.${vId}.${lastOctet}/24"
   
   $DEBUG  nmcli con add type bridge ifname $vName con-name $vName ip4 $ip4Addr

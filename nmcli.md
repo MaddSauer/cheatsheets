@@ -18,6 +18,15 @@ nmcli con show
 nmcli con reload
 ```
 
+## disable anoying dns-updates via uplink (e.g. Telekom Router)
+```bash
+nmcli con mod tkom ipv4.ignore-auto-dns yes ipv6.ignore-auto-dns yes
+nmcli con mod otwo ipv4.ignore-auto-dns yes ipv6.ignore-auto-dns yes
+
+nmcli con down tkom; nmcli con up tkom
+nmcli con down otwo; nmcli con up otwo
+```
+
 ## vlan tagged interface + bridge for each vlan
 
   * one vlan per use case

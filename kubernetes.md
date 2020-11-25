@@ -13,11 +13,11 @@ setup autocomplete in bash, bash-completion package should be installed first.
 source <(kubectl completion bash)
 ```
 
-### Access Control
+## Access Control
 
 https://github.com/kubernetes/dashboard/wiki/Access-control
 
-### Access Dashboard
+## Access Dashboard
 
 https://github.com/kubernetes/dashboard/wiki/Accessing-Dashboard---1.7.X-and-above
 
@@ -39,3 +39,17 @@ kubectl create rolebinding johndoe-admin-binding --clusterrole=admin --user=john
 ```
 kubectl create clusterrolebinding alex-admin-binding --clusterrole=cluster-admin --user=alex
 ```
+
+# Troubleshooting
+
+## terminiation of a namespaces which stuck in "Terminating..."
+
+```bash
+kubectl proxy &
+NS=my-namespace
+kubectl get ns $NS -o json | sed '/            "kubernetes"/d' |curl -k -H "Content-Type: application/json" -X PUT --data-binary @/dev/stdin http://127.0.0.1:8001/api/v1/namespaces/$NS/finalize
+
+# fg to take back to forground and terminate proxy with ctrl-c
+
+```
+

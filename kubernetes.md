@@ -1,9 +1,4 @@
-
-# Kubespray
-
-https://github.com/kubernetes-incubator/kubespray/blob/master/docs/getting-started.md
-
-## kubectl cheatsheet
+# kubectl cheatsheet
 
 https://kubernetes.io/docs/reference/kubectl/cheatsheet/
 
@@ -13,11 +8,11 @@ setup autocomplete in bash, bash-completion package should be installed first.
 source <(kubectl completion bash)
 ```
 
-## Access Control
+# Access Control
 
 https://github.com/kubernetes/dashboard/wiki/Access-control
 
-## Access Dashboard
+# Access Dashboard
 
 https://github.com/kubernetes/dashboard/wiki/Accessing-Dashboard---1.7.X-and-above
 
@@ -53,3 +48,7 @@ kubectl get ns $NS -o json | sed '/            "kubernetes"/d' |curl -k -H "Cont
 
 ```
 
+##  Get really all resources with kubectl w/o any plugins:
+```
+kubectl api-resources --verbs=list --namespaced -o name | xargs -n 1 kubectl get --show-kind --ignore-not-found -n $NAMESPACE_NAME
+```
